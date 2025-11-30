@@ -1,0 +1,510 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Apple Store - Premium Shopping Experience</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="https://www.apple.com/favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <!-- Toast Container -->
+    <div id="toast-container"></div>
+    
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="#" onclick="showPage('home')">
+                    <img src="https://www.apple.com/ac/globalnav/7/en_US/images/be15095f-5a20-57d0-ad14-cf4c638e223a/globalnav_apple_image__b5er5ngrzxqq_large.svg" alt="Apple Logo">
+                </a>
+            </div>
+            <ul>
+                <li><a href="#" onclick="showPage('home')" class="active">Home</a></li>
+                <li><a href="#" onclick="showPage('products')">Products</a></li>
+                <li>
+                    <a href="#" onclick="showPage('cart')" class="cart-link">
+                        Cart
+                        <span id="cart-badge" class="cart-badge" style="display: none;">0</span>
+                    </a>
+                </li>
+                <li><a href="#" onclick="showPage('about')">About</a></li>
+                <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                <li><a href="#" onclick="showPage('login')">Login</a></li>
+                <li><a href="#" onclick="showPage('signup')">Signup</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <div class="banner">
+                <video class="banner-video" autoplay muted loop playsinline>
+                    <source src="iphone.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+                <div class="banner-overlay"></div>
+                <div class="banner-content">
+                    <h1>Welcome to Apple Store</h1>
+                    <p>Discover the latest Apple products with a premium shopping experience.</p>
+                    <div class="banner-buttons">
+                        <button class="btn-primary btn-large" onclick="showPage('products')">
+                            Shop Now
+                            <span class="btn-arrow">→</span>
+                        </button>
+                        <button class="btn-secondary btn-large" onclick="showPage('about')">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Featured Categories -->
+            <div class="featured-section">
+                <h2>Shop by Category</h2>
+                <div class="category-grid">
+                    <div class="category-card" onclick="loadProducts('iPhone'); showPage('products');">
+                        <div class="category-icon">
+                            <img src="https://images.unsplash.com/photo-1592750475338-74b7b21085ab?w=600&h=600&fit=crop&q=80" alt="iPhone" loading="lazy">
+                        </div>
+                        <h3>iPhone</h3>
+                        <p>Latest smartphones</p>
+                    </div>
+                    <div class="category-card" onclick="loadProducts('iPad'); showPage('products');">
+                        <div class="category-icon">
+                            <img src="https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=600&h=600&fit=crop&q=80" alt="iPad" loading="lazy">
+                        </div>
+                        <h3>iPad</h3>
+                        <p>Powerful tablets</p>
+                    </div>
+                    <div class="category-card" onclick="loadProducts('Mac'); showPage('products');">
+                        <div class="category-icon">
+                            <img src="https://images.unsplash.com/photo-1517336714731-489689fd1ca8?w=600&h=600&fit=crop&q=80" alt="Mac" loading="lazy">
+                        </div>
+                        <h3>Mac</h3>
+                        <p>Pro computers</p>
+                    </div>
+                    <div class="category-card" onclick="loadProducts('Watch'); showPage('products');">
+                        <div class="category-icon">
+                            <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=600&h=600&fit=crop&q=80" alt="Apple Watch" loading="lazy">
+                        </div>
+                        <h3>Watch</h3>
+                        <p>Smart wearables</p>
+                    </div>
+                    <div class="category-card" onclick="loadProducts('AirPods'); showPage('products');">
+                        <div class="category-icon">
+                            <img src="https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?w=600&h=600&fit=crop&q=80" alt="AirPods" loading="lazy">
+                        </div>
+                        <h3>AirPods</h3>
+                        <p>Audio accessories</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Features Section -->
+            <div class="features-section">
+                <div class="feature-item">
+                    <div class="feature-icon">🚚</div>
+                    <h3>Free Shipping</h3>
+                    <p>On orders over $500</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Secure Payment</h3>
+                    <p>100% protected</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">↩️</div>
+                    <h3>Easy Returns</h3>
+                    <p>30-day guarantee</p>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon">💬</div>
+                    <h3>24/7 Support</h3>
+                    <p>Always here to help</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Products Page -->
+        <section id="products" class="page">
+            <div class="products-header">
+                <h1>Our Products</h1>
+                <div class="products-controls">
+                    <div class="search-box">
+                        <input type="text" id="search-input" placeholder="Search products...">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                    <div class="filter-buttons">
+                        <button class="filter-btn active" data-filter="All" onclick="loadProducts('All')">All</button>
+                        <button class="filter-btn" data-filter="iPhone" onclick="loadProducts('iPhone')">iPhone</button>
+                        <button class="filter-btn" data-filter="iPad" onclick="loadProducts('iPad')">iPad</button>
+                        <button class="filter-btn" data-filter="Mac" onclick="loadProducts('Mac')">Mac</button>
+                        <button class="filter-btn" data-filter="Watch" onclick="loadProducts('Watch')">Watch</button>
+                        <button class="filter-btn" data-filter="AirPods" onclick="loadProducts('AirPods')">AirPods</button>
+                    </div>
+                </div>
+            </div>
+            <div id="product-list"></div>
+        </section>
+
+        <!-- Product Details Page -->
+        <section id="product-details" class="page">
+            <button class="back-btn" onclick="showPage('products')">
+                <span>←</span> Back to Products
+            </button>
+            <div id="details-content"></div>
+        </section>
+
+        <!-- Cart Page -->
+        <section id="cart" class="page">
+            <div class="cart-header">
+                <h1>Shopping Cart</h1>
+                <span id="cart-count">0</span> items
+            </div>
+            <div id="cart-items"></div>
+            <div id="cart-summary" class="cart-summary">
+                <div class="cart-total-row">
+                    <span>Subtotal</span>
+                    <span class="cart-total-amount">$<span id="cart-total">0</span></span>
+                </div>
+                <div class="cart-total-row">
+                    <span>Shipping</span>
+                    <span class="shipping-free">FREE</span>
+                </div>
+                <div class="cart-total-row total-final">
+                    <span>Total</span>
+                    <span class="cart-total-amount">$<span id="cart-total-final">0</span></span>
+                </div>
+                <div class="cart-actions">
+                    <button class="btn-secondary" onclick="clearCart()">Clear Cart</button>
+                    <button class="btn-primary btn-large" onclick="showPage('checkout')">
+                        Proceed to Checkout
+                        <span class="btn-arrow">→</span>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Checkout Page -->
+        <section id="checkout" class="page">
+            <h1>Checkout</h1>
+            <div class="checkout-container">
+                <div class="checkout-main">
+                    <div id="checkout-options" class="payment-options">
+                        <h3>Select Payment Method</h3>
+                        <div class="payment-buttons">
+                            <button class="payment-method-btn" onclick="showPayment('card')">
+                                <span class="payment-icon">💳</span>
+                                <span>Credit/Debit Card</span>
+                            </button>
+                            <button class="payment-method-btn" onclick="showPayment('cod')">
+                                <span class="payment-icon">💵</span>
+                                <span>Cash on Delivery</span>
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <form id="payment-form" style="display: none;">
+                        <div id="card-fields" class="form-section" style="display: none;">
+                            <h3>💳 Card Details</h3>
+                            <input type="text" placeholder="Card Number" maxlength="19" required>
+                            <div class="form-row">
+                                <input type="text" placeholder="Name on Card" required>
+                            </div>
+                            <div class="form-row two-cols">
+                                <input type="text" placeholder="MM/YY" maxlength="5" required>
+                                <input type="text" placeholder="CVV" maxlength="4" required>
+                            </div>
+                        </div>
+                        
+                        <div id="cod-fields" class="form-section" style="display: none;">
+                            <h3>📦 Delivery Details</h3>
+                            <input type="text" placeholder="Full Name" required>
+                            <input type="tel" placeholder="Phone Number" required>
+                            <input type="text" placeholder="Delivery Address" required>
+                            <input type="text" placeholder="City" required>
+                            <textarea placeholder="Additional Notes (Optional)"></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn-primary btn-large btn-full">
+                            <span class="btn-text">Confirm Order</span>
+                            <span class="btn-arrow">→</span>
+                        </button>
+                    </form>
+                </div>
+                
+                <div id="checkout-summary" class="checkout-sidebar">
+                    <!-- Filled by JS -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Order Confirmation Page -->
+        <section id="confirmation" class="page">
+            <div class="confirmation-content">
+                <div class="confirmation-icon">✓</div>
+                <h1>Order Confirmed!</h1>
+                <p>Thank you for your purchase. Your order has been placed successfully.</p>
+                <p class="order-number">Order #APL-2025-<span id="order-id"></span></p>
+                <p class="confirmation-note">You will receive an email confirmation shortly.</p>
+                <button class="btn-primary btn-large" onclick="showPage('home')">
+                    Continue Shopping
+                    <span class="btn-arrow">→</span>
+                </button>
+            </div>
+        </section>
+
+        <!-- Login Page -->
+        <section id="login" class="page">
+            <div class="auth-container">
+                <div class="auth-card">
+                    <div class="auth-header">
+                        <h1>Welcome Back</h1>
+                        <p>Sign in to your Apple Store account</p>
+                    </div>
+                    <form id="login-form">
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" placeholder="Enter your email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" placeholder="Enter your password" required>
+                        </div>
+                        <button type="submit" class="btn-primary btn-full">
+                            Sign In
+                        </button>
+                    </form>
+                    <div class="auth-footer">
+                        <p>Don't have an account? <a href="#" onclick="showPage('signup')">Create one</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Signup Page -->
+        <section id="signup" class="page">
+            <div class="auth-container">
+                <div class="auth-card">
+                    <div class="auth-header">
+                        <h1>Create Account</h1>
+                        <p>Join the Apple Store family</p>
+                    </div>
+                    <form id="signup-form">
+                        <div class="form-group">
+                            <label>Full Name</label>
+                            <input type="text" placeholder="Name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Password</label>
+                            <input type="password" placeholder="Password" required minlength="6">
+                        </div>
+                        <div class="form-group">
+                            <label>Phone</label>
+                            <input type="tel" placeholder="Phone" required>
+                        </div>
+                        <button type="submit" class="btn-primary btn-full">
+                            Create Account
+                        </button>
+                    </form>
+                    <div class="auth-footer">
+                        <p>Already have an account? <a href="#" onclick="showPage('login')">Sign in</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Page -->
+        <section id="about" class="page">
+            <div class="about-container">
+                <div class="about-hero">
+                    <video class="about-banner-video" autoplay muted loop playsinline>
+                        <source src="aboutbanner.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                    <div class="about-hero-content">
+                        <h1>About Apple Store</h1>
+                        <p class="tagline">Innovation that inspires. Technology that empowers.</p>
+                    </div>
+                </div>
+                
+                <div class="about-content">
+                    <div class="about-section">
+                        <h2>Our Story</h2>
+                        <p>Welcome to our Apple Store – your premier destination for the latest Apple products and accessories. We are passionate about bringing you the best technology that Apple has to offer, from the revolutionary iPhone to the powerful MacBook Pro.</p>
+                    </div>
+                    
+                    <div class="about-section">
+                        <h2>Our Mission</h2>
+                        <p>Our mission is to provide customers with an exceptional shopping experience, offering genuine Apple products with outstanding customer service. We believe technology should be accessible, intuitive, and life-enhancing.</p>
+                    </div>
+                    
+                    <div class="about-section">
+                        <h2>Why Choose Us?</h2>
+                        <ul class="features-list">
+                            <li>✓ 100% Authentic Apple Products</li>
+                            <li>✓ Official Apple Warranty</li>
+                            <li>✓ Expert Product Support</li>
+                            <li>✓ Fast & Secure Shipping</li>
+                            <li>✓ Easy Returns & Exchanges</li>
+                            <li>✓ Competitive Pricing</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="about-section team-section">
+                        <h2>Our Team</h2>
+                        <div class="team-grid">
+                            <div class="team-member">
+                                <div class="member-avatar">
+                                    <img src="Abdullah Shahzad.jpg" alt="Abdullah Shahzad">
+                                </div>
+                                <h3>Abdullah Shahzad</h3>
+                                <p>Role: Developer</p>
+                            </div>
+                            <div class="team-member">
+                                <div class="member-avatar">
+                                    <img src="muzammil.jpg" alt="Nawab Muzammil">
+                                </div>
+                                <h3>Nawab Muzammil</h3>
+                                <p>Role: Designer</p>
+                            </div>
+                            <div class="team-member">
+                                <div class="member-avatar">
+                                    <img src="Zoraiz.jpg" alt="Zoraiz">
+                                </div>
+                                <h3>Zoraiz</h3>
+                                <p>Role: Developer</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Page -->
+        <section id="contact" class="page">
+            <h1>Contact Us</h1>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Get In Touch</h2>
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <div>
+                            <h4>Address</h4>
+                            <p>FAST-NUCES, Faisalabad-Chiniot Campus</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📞</span>
+                        <div>
+                            <h4>Phone</h4>
+                            <p>+92 300 1234567</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📧</span>
+                        <div>
+                            <h4>Email</h4>
+                            <p>info@applestore.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">🕐</span>
+                        <div>
+                            <h4>Hours</h4>
+                            <p>Mon-Sat: 9:00 AM - 9:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                <form id="contact-form" class="contact-form">
+                    <h2>Send a Message</h2>
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" required>
+                    </div>
+                    <div class="form-group">
+                        <textarea placeholder="Your Message" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn-primary btn-full">
+                        Send Message
+                        <span class="btn-arrow">→</span>
+                    </button>
+                </form>
+            </div>
+            <div class="map-container">
+                <h2>Find Us</h2>
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3403.8256567983455!2d73.06899307555847!3d31.41874905291035!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x392269281d2a2c55%3A0x89b5a4e5af6ada4b!2sFAST%20NUCES%20Faisalabad!5e0!3m2!1sen!2spk!4v1700000000000!5m2!1sen!2spk" 
+                    width="100%" 
+                    height="350" 
+                    style="border:0; border-radius: 20px;" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Apple Store</h3>
+                <p>Your trusted destination for authentic Apple products with exceptional service.</p>
+            </div>
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#" onclick="showPage('home')">Home</a></li>
+                    <li><a href="#" onclick="showPage('products')">Products</a></li>
+                    <li><a href="#" onclick="showPage('about')">About Us</a></li>
+                    <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Categories</h3>
+                <ul>
+                    <li><a href="#" onclick="loadProducts('iPhone'); showPage('products');">iPhone</a></li>
+                    <li><a href="#" onclick="loadProducts('iPad'); showPage('products');">iPad</a></li>
+                    <li><a href="#" onclick="loadProducts('Mac'); showPage('products');">Mac</a></li>
+                    <li><a href="#" onclick="loadProducts('Watch'); showPage('products');">Watch</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Follow Us</h3>
+                <div class="social-links">
+                    <a href="#" class="social-btn">Facebook</a>
+                    <a href="#" class="social-btn">Twitter</a>
+                    <a href="#" class="social-btn">Instagram</a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2025 Apple Store - ICT Project | FAST-NUCES Faisalabad-Chiniot Campus</p>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+    <script>
+        // Generate random order ID for confirmation page
+        document.getElementById('order-id')?.textContent = Math.random().toString(36).substr(2, 8).toUpperCase();
+        
+        // Sync cart total final with cart total
+        const cartTotal = document.getElementById('cart-total');
+        const cartTotalFinal = document.getElementById('cart-total-final');
+        if (cartTotal && cartTotalFinal) {
+            new MutationObserver(() => {
+                cartTotalFinal.textContent = cartTotal.textContent;
+            }).observe(cartTotal, { childList: true });
+        }
+    </script>
+</body>
+</html>
